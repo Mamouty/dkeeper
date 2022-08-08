@@ -12,7 +12,7 @@ function App() {
   function addNote(newNote) {
     setNotes(prevNotes => {
       //Calling the function createNote from the dkeeper canister before returning
-      dkeeper.createNote(newNote.title, newNote.content)
+      dkeeper.createNote(newNote.title, newNote.content);
       //Returning the newNote at the beginning and the prevNots after it.
       return [newNote, ...prevNotes];
     });
@@ -37,6 +37,7 @@ function App() {
 
   function deleteNote(id) {
     setNotes(prevNotes => {
+      dkeeper.removeNote(id);
       return prevNotes.filter((noteItem, index) => {
         return index !== id;
       });
