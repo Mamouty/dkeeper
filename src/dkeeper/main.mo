@@ -1,6 +1,8 @@
 import List "mo:base/List"; //To use List's methods we have to import it.
 import Debug "mo:base/Debug";
 
+/*----------------------------------------Create Data----------------------------------------*/
+
 actor DKeeper {
   //Creating a new data type of type Note
   public type Note = {
@@ -22,5 +24,13 @@ actor DKeeper {
       notes := List.push(newNote, notes);
       Debug.print(debug_show(notes));
   };
+
+/*----------------------------------------Read Data----------------------------------------*/
+
+  //Creating a public query function that'll return asynchronously an array of notes
+  public query func readNotes(): async [Note] {
+    //Converting our list notes to an array
+    return List.toArray(notes);
+  }
 
 };
